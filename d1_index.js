@@ -215,9 +215,10 @@ console.log(48 == '48');
     
         let multOfFive = "I found a " + i + ". High five!";
         let multOfThree = "I found a " + i + ". Three is a crowd";
+        let multOfBoth = "I found a " + i + ". High five! Three is a crowd";
 
         if (i % 5 === 0 && i % 3 === 0 && i > 0) {
-            console.log(multOfFive + " " + multOfThree);
+            console.log(multOfBoth);
         }
         else if (i % 5 === 0 && i > 0) {
             // console.log("I found a " + i + ". High five!");
@@ -232,22 +233,22 @@ console.log(48 == '48');
 // D. Savings account
 // 1. Write code that will save the sum of all the numbers between 1 - 10 to a variable called bank_account. Check your work! Your bank_account should have $55 in it.
 
+    let bank_account = 0
+
     for (let i = 1; i <= 10; i++) {
-
-        let bank_account = (i * (i + 1)) / 2;
-
-        // console.log(bank_account);
+        bank_account += i
     }
+    
+    console.log("$" + bank_account);
 
 // 2. You got a bonus! Your pay is now doubled each week. Write code that will save the sum of all the numbers between 1 - 100 multiplied by 2.
 // Check your work! Your bank_account should have $10,100 in it.
 
     for (let i = 1; i <= 100; i++) {
-
-        let bank_account = (i * (i +1)) / 2;
-
-        // console.log(bank_account * 2);
+        bank_account += i * 2
     }
+    
+    console.log("$" + bank_account);
 
 //_____________________________________________________________
 
@@ -345,7 +346,7 @@ console.log(myArray);
 
 // 5. Reverse this array using Array.prototype.reverse(). Did you mutate the array? What does mutate mean? Did the .reverse()method return anything?
 
-console.log(Array.prototype.reverse(myArray));
+console.log(myArray.reverse());
 
 
 // F. Biggie Smalls ------------------------------------------------------------------------------------
@@ -360,12 +361,9 @@ let num = 8;
 if (num < 100) {
     console.log("little number");
 }
-
 // 2. console.log()s big number if the number is greater than or equal to 100.
-
-if (num < 100) {
-    console.log("little number");
-} else {
+ 
+ else {
     console.log("big number");
 };
 
@@ -473,10 +471,11 @@ console.log(thomsCloset[1][2]);
 
 
 function printGreeting(name) {
-    console.log("Hello there, " + name + "!");
+    // console.log("Hello there, " + name + "!");
+    return "Hello there, " + name + "!"
 }
 
-printGreeting("Slimer");
+console.log(printGreeting("Slimer"));
 
 // B. ----------------------------------------------------------------------------------------------------
 // Write a function printCoolthat accepts one parameter, name as an argument. The function should print the name and a message saying that that person is cool.
@@ -485,10 +484,11 @@ printGreeting("Slimer");
 // => "Captain Reynolds is cool";
 
 function printCool(name) {
-    console.log(name + " is cool!");
+    // console.log(name + " is cool!");
+    return name + " is cool!"
 }
 
-printCool("Captain Reynolds");
+console.log(printCool("Captain Reynolds"));
 
 // C. -----------------------------------------------------------------------------------------------------
 // Write a function calculateCube that takes a single number and prints the volume of a cube made from that number.
@@ -497,10 +497,11 @@ printCool("Captain Reynolds");
 // => 125
 
 function calculateCube(num1) {
-    console.log(num1 ** 3);
+    // console.log(num1 ** 3);
+    return num1 ** 3
 }
 
-calculateCube(5);
+console.log(calculateCube(5));
 
 // D. ------------------------------------------------------------------------------------------------------
 // Write a function isVowel that takes a character (i.e. a string of length 1) and returns true if it is a vowel, false otherwise. The vowel could be upper or lower case. Test your function on every vowel and make sure it's working. In general, when you write functions, take a minute to test them with different values to make sure they behave the way you want.
@@ -517,7 +518,7 @@ function isVowel(char) {
     }
 }
 
-console.log(isVowel("E"));
+console.log(isVowel("U"));
 
 // E. ----------------------------------------------------------------------------------------------------
 // Write a function getTwoLengths that accepts two parameters (strings). The function should return an array of numbers where each number is the length of the corresponding string.
@@ -541,10 +542,17 @@ console.log(getTwoLengths("Hank", "Hippopopalous"));
 //     return arrayOfStrings.length
 // })
 
-// function getMultipleLengths(arrayOfStrings) {
-//     return [arrayOfStrings.length]
-// }
+const arrayOfStrings = ["You", "got", "this", "Keep", "going", "Don't", "quit"];
 
+function getMultipleLengths(arrayOfStrings) {
+    
+    for (i = 0; i < arrayOfStrings.length; i++) {
+        let wordLetterCount = arrayOfStrings[i].length;
+        return [wordLetterCount]
+    }
+}
+
+console.log(getMultipleLengths(arrayOfStrings));
 // G. --------------------------------------------------------------------------------------------------
 // Define a function maxOfThree that takes three numbers as arguments and returns the largest of them. If all numbers are the same, it doesn't matter which one is returned. If the two largest numbers are the same, one of them should be returned. Be sure to test it with larger values in each of the three locations.
 
@@ -703,13 +711,23 @@ console.log(user.friend.purchased[1]);
 // F. Loops
 // 1. Write a for loop that iterates over the User's purchased array (NOT the friend's purchased array), and prints each element to the console.
 
-for (let i = 0; i < user.purchased; i++);
+for (let i = 0; i < user.purchased.length; i++) {
+    console.log(user.purchased[i]);
+};
 
-// console.log(user.purchased[i]);
+// 2. Write a for loop that iterates over the Friend's purchased array, and prints each element to the console.
 
-// G.
+for (let i = 0; i < user.friend.purchased.length; i++) {
+    console.log(user.friend.purchased[i]);
+};
 
-function updateUser () {
+
+// G. Functions can operate on objects
+// 1. Write a single function updateUser that takes no parameters. When the function is run, it should:
+// 2. it should increment the user's age by 1
+// 3. make the user's name uppercase
+
+function updateUser() {
     user.age++
     user.name = user.name.toUpperCase()
 }
@@ -717,12 +735,15 @@ function updateUser () {
 updateUser(user)
 console.log(user);
 
+// 2. Write a function oldAndLoud that performs the exact same tasks as updateUser, but instead of hard-coding it to only work on our user object, make it take a parameter person, and have it modify the object that is passed in as an argument when the function is called. Call your oldAndLoud function with user as the argument.
 
 function oldAndLoud(person) {
     person.age++
     person.name = person.name.toUpperCase()
 }
 
+oldAndLoud(user)
+console.log(user);
 //_____________________________________________________________
 
 
